@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Question, Quiz, Option } = require('../../models');
+const { Question, Option } = require('../../models');
 
 router.get('/', (req, res) => {
   Question.findAll({

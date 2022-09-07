@@ -23,11 +23,11 @@ Quiz.hasMany(Question, {
 });
 
 Option.belongsTo(Question, {
-  foreignKey: question_id,
+  foreignKey: 'question_id',
 });
 
 Question.hasMany(Option, {
-  foreignKey: question_id,
+  foreignKey: 'question_id',
   onDelete: 'SET NULL'
 });
 

@@ -15,15 +15,15 @@ Option.init(
       type: DataTypes.STRING,
       allowNull: false
     },
+    correct: {
+      type: DataTypes.BOOLEAN,
+    },
     question_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'question',
         key: 'id'
       }
-    },
-    correct: {
-      type: DataTypes.BOOLEAN,
     }
   },
   {

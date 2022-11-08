@@ -96,6 +96,7 @@ const userLogin = () => {
 
         if (response.ok) {
           console.log("Logged in!");
+          window.location.replace('/');
           
         } else {
           console.log(response.statusText);

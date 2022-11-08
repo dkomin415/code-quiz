@@ -2,12 +2,10 @@
   "name": "code-quiz",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node server/server.js",
-    "build": "cd client && npm run build",
-    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
-    "install": "cd server && npm i && cd ../client && npm i"
+    "start": "node server.js",
+    "watch": "nodemon"
   },
   "repository": {
     "type": "git",
@@ -20,7 +18,13 @@
     "url": "https://github.com/dkomin415/code-quiz/issues"
   },
   "homepage": "https://github.com/dkomin415/code-quiz#readme",
-  "devDependencies": {
-    "concurrently": "^7.5.0"
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "inquirer": "^8.0.0",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.20",
+    "sequelize": "^6.21.4"
   }
 }

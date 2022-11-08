@@ -1,5 +1,5 @@
 const express = require('express');
-const routes = require('./src/server/controllers');
+const routes = require('./controllers');
 const sequelize = require('./lib/config/connection');
 const promptUser = require('./lib/utils/prompt-user');
 
@@ -15,7 +15,7 @@ app.use(routes);
 // turn on connection to db and server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
-    console.log('Now listening');
-    promptUser();
+    console.log('Now listening on port:', PORT );
+    // promptUser();
   });
 });

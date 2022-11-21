@@ -1,5 +1,5 @@
 {
-  "name": "code-quiz",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/dkomin415/code-quiz#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "inquirer": "^8.0.0",

@@ -1,19 +1,35 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 import Header from './components/Header'
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import NoMatch from './pages/NoMatch';
+import Login from './pages/Login';
+import StartQuiz from './pages/StartQuiz';
+import Profile from './pages/Profile';
+import Signup from './pages/Signup';
 
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div >
-        <Home />
+    <Router>
+      <div className="App">
+        <Header />
+        <div className='container'>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/quiz/:id" component={StartQuiz} />
+            <Route exact path="/profile/:username?" component={Profile} />
+
+            <Route component={NoMatch} />
+          </Switch>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </Router>
   );
 }
 

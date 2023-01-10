@@ -13,10 +13,11 @@ Quiz.init(
     },
     title: {
       type: DataTypes.STRING,
-      allowNul: false
+      allowNull: false
     },
     user_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
         model: 'user',
         key: 'id'

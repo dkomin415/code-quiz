@@ -24,7 +24,8 @@ const StartQuiz = () => {
     } 
     getQuiz();
   }, []);
-  
+
+
   const { id, title, user_id, created_at, questions } = quizObj;
 
   if (!questions) {

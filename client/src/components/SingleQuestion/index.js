@@ -1,43 +1,58 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import FinishQuiz from '../../pages/FinishQuiz';
 
 const SingleQuestion = ( {questions} ) => {
 
-  // const [ questionId, setQuestionId ] = useState(0);
-  const [ questionObj, setQuestionObj ] = useState([]);
+  const [ score, setScore ] = useState(0);
+  const [ currentQuestion, setCurrentQuestion ] = useState(0);
 
   const optionClick = (correct) => {
     if(!correct){
-      alert('Incorrect!');
+      console.log("Incorrect");
     } else {
-      alert('Correct!');
+      setScore(score + 1);
+      console.log(score);
+      console.log('Correct!');
     }
-    // setQuestionId(questionId + 1);
+    const nextQuestion = currentQuestion + 1;
+    setCurrentQuestion(nextQuestion);
   }
 
-  // setQuestionObj(questions.find(obj => {
+  // setCurrentQuestion(questions.find(obj => {
   //   return obj.id === questionId;
   // }));
-
-  return (
-    <div>
-      {questions.map(({ id, title, options}) => (
-        <div key={id} className="">
-          <h5>{title}</h5>
-          <div>
-            {options.map(({ id, option, correct }) => (
-              <div key={id}>
-                <button onClick={() => {
-                  optionClick(correct);
-                }}>
-                  {option}
-                </button>
-              </div>
-            ))}
+  if(questions[currentQuestion] != null) {
+    return (
+      <div>
+          <div className="question-section">
+            <div className="question-count">
+              <span>Question {questions[currentQuestion].id}/{questions.length}</span>
+            </div>
+            <div className="question-text">
+              <h5>{questions[currentQuestion].title}</h5>
+            </div>
+            <div>
+              {questions[currentQuestion].options.map(({ id, option, correct }) => (
+                <div key={id}>
+                  <button onClick={() => {
+                    optionClick(correct);
+                  }}>
+                    {option}
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+      </div>
+    )
+  } else {
+    return (
+    <div>
+      <FinishQuiz score={score} total={questions.length}/>
     </div>
-  )
+    )
+  }
+
 }
 
 

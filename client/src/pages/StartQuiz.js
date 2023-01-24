@@ -26,7 +26,7 @@ const StartQuiz = () => {
   }, []);
 
 
-  const { id, title, user_id, created_at, questions } = quizObj;
+  const { id, title, questions } = quizObj;
 
   if (!questions) {
     return (<h1>Loading...</h1>)
@@ -36,8 +36,6 @@ const StartQuiz = () => {
         <div>
           <div key={id} className="">
             <h2>{title}</h2>
-            <h3>{user_id}</h3>
-            <p>{created_at}</p>
           </div>
         </div>
         <SingleQuestion questions={quizObj.questions} />

@@ -12,11 +12,11 @@ const QuizList = ({ quizObj }) => {
         {quizObj &&
           quizObj.map(({ id, title, user: { username }, created_at }) => (
             <div key={id} className="">
-              <p>
+              <div>
                 <Link to ={`/quiz/${id}`}>
                   <h2>{title}</h2>
                 </Link>
-              </p>
+              </div>
               <h3>{username}</h3>
               <p>{created_at}</p>
             </div>

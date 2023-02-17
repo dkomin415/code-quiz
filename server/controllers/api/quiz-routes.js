@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Quiz, User, Question, Option } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
   Quiz.findAll({
@@ -89,7 +90,7 @@ router.get('/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
   Quiz.create(
     {
       title: req.body.title,
@@ -102,7 +103,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
   Quiz.update(
     {
       title: req.body.title,
@@ -126,7 +127,7 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
   Quiz.destroy({
     where: {
       id: req.params.id,

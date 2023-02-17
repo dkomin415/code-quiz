@@ -1,6 +1,8 @@
 const express = require('express');
+const session = require('express-session');
 const routes = require('./controllers');
-const sequelize = require('./lib/config/connection');
+const Sequelize = require('./lib/config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const cors = require('cors');
 
 const app = express();
@@ -9,6 +11,22 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const sess = {
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    httpOnly: true,
+    maxAge: parseInt(process.env.SESSION_MAX_AGE)
+  },
+  resave: false,
+  saveUnitialized: true,
+  store: new SequelizeStore({
+    db: Sequelize
+  })
+};
+
+// session
+app.use(session(sess));
 
 // turn on routes
 app.use(routes);
@@ -22,7 +40,7 @@ app.get('*', (req, res) => {
 })
 
 // turn on connection to db and server
-sequelize.sync({ force: false }).then(() => {
+Sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => {
     console.log('Now listening on port:', PORT );
   });
